@@ -3,30 +3,21 @@
 #include <iostream>
 #include <string>
 #include "token.h"
-
-
 using namespace std;
 
-class Lexer: public Token
+class Lexer
 {
 	public:
 		string nextToken();
+	private:
+		TokenPtr token;
 };
+typedef Lexer* LexerPtr;
 
 string Lexer::nextToken()
 {
-	Lexer apple;
-	apple.setLexeme("worked");
-	Lexer orange;
-	orange.setLexeme("maybe");
-
-	
-
-	/*Lexer banana;
-	banana.lexeme = "this worked";
-	return banana.lexeme;*/
-	/*Token banana;
-	banana.lexeme = "this worked"*/
+	/*Lexer apple;
+	apple.setLexeme("worked");*/
 	return "yes";
 }
 

@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include "lexer.h"
-
 using namespace std;
 
 class Token
@@ -15,9 +14,8 @@ class Token
 	    TokenCode tCode;
 	    Token(string lexeme){lexeme = "";}
 		void setLexeme(string lex){lexeme = lex;}
-
 };
-
+typedef Token* TokenPtr;
 
 #endif // TOKEN_H_INCLUDED
 
