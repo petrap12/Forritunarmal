@@ -9,6 +9,7 @@ class Lexer
 {
 	public:
 		string nextToken();
+		void errorMessage();
 	private:
 		TokenPtr token;
 };
@@ -16,12 +17,62 @@ typedef Lexer* LexerPtr;
 
 string Lexer::nextToken()
 {
+	string temp = token->getLexeme();
+	bool inTokenCode=true;
+
+	//Fara í gegnum öll lögleg token og athuga hvaða input kom
+	//Hlýtur að vera betri leið til að gera þetta
+	/*switch (temp)
+	{
+	    case 'ID':
+	        // ..
+	        break;
+	    case 'ASSIGN':  
+	    	//..
+	    	break;
+	    case 'SEMICOL':
+	        // ..
+	        break;
+	    case 'INT':
+	        // ..
+	        break;
+	    case 'PLUS':
+	    	//..
+	    	break;
+	    case 'MINUS':
+	    	//..
+	    	break;
+	    case 'MULT':
+	    	//..
+	    	break;
+	    case 'LPAREN':
+	    	//..
+	    	break;
+	    case 'RPAREN':
+	    	//..
+	    	break;
+	    case 'PRINT':
+	    	//..
+	    	break;
+	    case 'END':
+	    	//..
+	    	break;
+	    case 'ERROR':
+	    	//..
+	     default:
+	        errorMessage();
+	        break;
+	}*/
 	/*Lexer apple;
 	apple.setLexeme("worked");*/
-	return "yes";
+	return temp;
 }
 
-
+void Lexer::errorMessage()
+{
+	cout << "Token not valid" << endl;
+	//exit(1);
+}
 
 #endif // LEXER_H_INCLUDED
 
