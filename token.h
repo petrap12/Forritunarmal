@@ -2,18 +2,20 @@
 #define TOKEN_H_INCLUDED
 #include <iostream>
 #include <string>
+#include "lexer.h"
 
 using namespace std;
 
 class Token
 {
     public:
-    string lexeme;
-    /*TokenCode tCode;
-    enum TokenCode { ID, ASSIGN, SEMICOL, INT, PLUS, MINUS,
-                    MULT, LPAREN, RPAREN, PRINT, END, ERROR};*/
-    public:
-    	Token(string lexeme){lexeme = "";}
+	    string lexeme;
+	    enum TokenCode { ID, ASSIGN, SEMICOL, INT, PLUS, MINUS,
+	                    MULT, LPAREN, RPAREN, PRINT, END, ERROR};
+	    TokenCode tCode;
+	    Token(string lexeme){lexeme = "";}
+		void setLexeme(string lex){lexeme = lex;}
+
 };
 
 
