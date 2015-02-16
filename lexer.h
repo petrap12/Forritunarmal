@@ -8,19 +8,36 @@ using namespace std;
 class Lexer: public Token
 {
 	public:
+		Lexer();
 		TokenPtr nextToken();
 		void errorMessage();
+		
 	private:
-		TokenPtr token;
+		TokenPtr thisToken;
+		string arrTokens [];
 };
 typedef Lexer* LexerPtr;
 
+Lexer::Lexer()
+{
+	arrTokens[0] = ("=");
+	arrTokens[1] = (";");
+	arrTokens[2] = ("+");
+	arrTokens[3] = ("-");
+	arrTokens[4] = ("*");
+	arrTokens[5] = ("(");
+	arrTokens[6] = (")");	
+
+
+	//{ ID,INT,PRINT, END, ERROR};
+}
 TokenPtr Lexer::nextToken()
 {
 	bool inTokenCode=true;
-	TokenPtr nxt = new Token("amma", INT);
+	//TokenPtr nxt = new Token("amma", INT);
+	//string buff = getline(cin, );
 	
-	return nxt;
+	return thisToken;
 }
 
 void Lexer::errorMessage()
@@ -28,6 +45,7 @@ void Lexer::errorMessage()
 	cout << "Token not valid" << endl;
 	//exit(1);
 }
+
 
 #endif // LEXER_H_INCLUDED
 
