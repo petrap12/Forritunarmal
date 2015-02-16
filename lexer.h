@@ -17,8 +17,15 @@ typedef Lexer* LexerPtr;
 
 string Lexer::nextToken()
 {
-	string temp = token->getLexeme();
+	string str = token->getLexeme();
 	bool inTokenCode=true;
+
+	for (int i = 0; i < str.size(); i++)
+	{
+    	if(isdigit(str[i]))
+    		token->setDigit(true);
+
+	}
 
 	//Fara í gegnum öll lögleg token og athuga hvaða input kom
 	//Hlýtur að vera betri leið til að gera þetta
@@ -65,7 +72,7 @@ string Lexer::nextToken()
 	}*/
 	/*Lexer apple;
 	apple.setLexeme("worked");*/
-	return temp;
+	return str;
 }
 
 void Lexer::errorMessage()
