@@ -23,7 +23,9 @@ string Lexer::nextToken()
 	for (int i = 0; i < str.size(); i++)
 	{
     	if(isdigit(str[i]))
-    		token->setDigit(true);
+    		
+    	else if(isalpha(str[i]))
+
 
 	}
 
