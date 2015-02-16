@@ -9,11 +9,11 @@ class Lexer: public Token
 {
 	public:
 		Lexer();
-		TokenPtr nextToken();
+		Token nextToken();
 		void errorMessage();
 		
 	private:
-		TokenPtr thisToken;
+		Token thisToken;
 		string arrSymbols [];
 		enum TokenCode {allTokens = Token::ERROR};
 		TokenCode arrTokens [];
@@ -56,7 +56,7 @@ Lexer::Lexer()
 	arrSymbols[6] = (")");*/
 	//{ ID,INT,PRINT, END, ERROR};
 }
-TokenPtr Lexer::nextToken()
+Token Lexer::nextToken()
 {
 	bool inTokenCode=false;
 
@@ -85,8 +85,8 @@ TokenPtr Lexer::nextToken()
 		}
 	}
 	
-	
-	return thisToken;
+	Token.TokenCode = MULT;
+	return new Token("*", tCode);
 }
 
 void Lexer::errorMessage()
