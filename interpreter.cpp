@@ -1,13 +1,15 @@
 #include <iostream>
+#include <fstream>
 #include "lexer.h"
 #include "parser.h"
 using namespace std;
 
-int main(){
-    Lexer myLexer = new Lexer();
-    Parser myParser = new Parser(myLexer);
-    myParser.parse();
-
-    return 0;
-};
+int main ()
+{
+	ofstream outstream;
+  	outstream.open ("compilerOutput.txt");
+  	outstream << "Writing this to a file and something else plus this.\n";
+  	outstream.close();
+	return 0;
+}
 

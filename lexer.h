@@ -5,76 +5,22 @@
 #include "token.h"
 using namespace std;
 
-class Lexer
+class Lexer: public Token
 {
 	public:
-		string nextToken();
+		TokenPtr nextToken();
 		void errorMessage();
 	private:
 		TokenPtr token;
 };
 typedef Lexer* LexerPtr;
 
-string Lexer::nextToken()
+TokenPtr Lexer::nextToken()
 {
-	string str = token->getLexeme();
 	bool inTokenCode=true;
-
-	for (int i = 0; i < str.size(); i++)
-	{
-    	if(isdigit(str[i]))
-    		
-    	else if(isalpha(str[i]))
-
-
-	}
-
-	//Fara í gegnum öll lögleg token og athuga hvaða input kom
-	//Hlýtur að vera betri leið til að gera þetta
-	/*switch (temp)
-	{
-	    case 'ID':
-	        // ..
-	        break;
-	    case 'ASSIGN':  
-	    	//..
-	    	break;
-	    case 'SEMICOL':
-	        // ..
-	        break;
-	    case 'INT':
-	        // ..
-	        break;
-	    case 'PLUS':
-	    	//..
-	    	break;
-	    case 'MINUS':
-	    	//..
-	    	break;
-	    case 'MULT':
-	    	//..
-	    	break;
-	    case 'LPAREN':
-	    	//..
-	    	break;
-	    case 'RPAREN':
-	    	//..
-	    	break;
-	    case 'PRINT':
-	    	//..
-	    	break;
-	    case 'END':
-	    	//..
-	    	break;
-	    case 'ERROR':
-	    	//..
-	     default:
-	        errorMessage();
-	        break;
-	}*/
-	/*Lexer apple;
-	apple.setLexeme("worked");*/
-	return str;
+	TokenPtr nxt = new Token("amma", INT);
+	
+	return nxt;
 }
 
 void Lexer::errorMessage()
