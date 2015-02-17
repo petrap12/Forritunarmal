@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 
+//This class should be finished
 class Token
 {
     public:
@@ -16,7 +17,7 @@ class Token
 	    Token(string lex, TokenCode code){lexeme = lex; tCode = code;}
 	
 };
-typedef Token* TokenPtr;
+//typedef Token* TokenPtr;
 
 #endif // TOKEN_H_INCLUDED
 
