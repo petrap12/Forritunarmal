@@ -5,6 +5,7 @@ public class Lexer
 {
 	//void errorMessage(); we need an exception code
 	char arrSymbols [];
+	String arrStrings [];
 
 	 public Lexer()
 	 {
@@ -16,6 +17,9 @@ public class Lexer
 		arrSymbols[5] = ('('); //LPAREN
 		arrSymbols[6] = (')'); //RPAREN
 
+		arrStrings[0] = ("print"); //PRINT
+		arrStrings[1] = ("end"); //END
+		arrStrings[2] = ("error"); //ERROR
 		//{ ID,INT,PRINT, END, ERROR};
 	 }
 
@@ -41,9 +45,13 @@ public class Lexer
 
 			//not ready
 			//{ ID,INT,PRINT, END, ERROR};
-			if(buff == "id" || buff == "end" || buff == "print" || isDigit(buff))
+			for(int i=0; inTokenCode || i<3; i++)
 			{
-				oTokens(buff);
+				if(buff == arrStrings[i])
+				{
+					otokens(buff);
+					inTokenCode = true;
+				}
 			}
 
 
@@ -82,14 +90,20 @@ public class Lexer
 		}
     }
 
-    Token oTokens(String input)
+    Token otokens(String input)
     {
-    	if(isDigit(input))
+    	if(input == "print")
     	{
-    		return new Token (String.valueOf(input), Token.TokenCode.INT);
+    		return new Token (input, Token.TokenCode.PRINT);
     	}
-    	else 
-    		return new Token (String.valueOf(input), Token.TokenCode.INT); //bara til þess að þetta compile
+    	else if(input == "end")
+    	{
+    		return new Token (input, Token.TokenCode.END);
+    	}
+    	else
+    	{
+    		return new Token (input, Token.TokenCode.ERROR);
+    	}
     }
 
     boolean isDigit(String input)
@@ -98,6 +112,17 @@ public class Lexer
     	{
     		char c = input.charAt(i);
     		if(!Character.isDigit(c));
+    			return false;
+    	}
+    	return true;
+    }
+
+    boolean isAlpha(String input)
+    {
+    	for(int i=0; i<input.length(); i++)
+    	{
+    		char c = input.charAt(i);
+    		if(!Character.isLetter(c));
     			return false;
     	}
     	return true;
