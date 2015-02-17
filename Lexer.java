@@ -44,25 +44,27 @@ public class Lexer
 				}
 			}
 
-			//{ ID,INT,PRINT, END, ERROR};
-			for(int i=0; inTokenCode || i<3; i++)
+			if(letter == ' ' || letter == '\n')
 			{
-				if(buff == arrStrings[i])
+				//{ ID,INT,PRINT, END, ERROR};
+				for(int i=0; inTokenCode || i<3; i++)
 				{
-					otokens(buff);
-					inTokenCode = true;
+					if(buff == arrStrings[i])
+					{
+						otokens(buff);
+						inTokenCode = true;
+					}
+				}
+
+				if(isDigit(buff))
+				{
+					return new Token (buff, Token.TokenCode.INT);
+				}
+				else if(isAlpha(buff))
+				{
+					return new Token (buff, Token.TokenCode.ID);
 				}
 			}
-
-			if(isDigit(buff))
-			{
-				return new Token (buff, Token.TokenCode.INT);
-			}
-			else if(isAlpha(buff))
-			{
-				return new Token (buff, Token.TokenCode.ID);
-			}
-
 		}
 	}
 
@@ -136,12 +138,16 @@ public class Lexer
     	return true;
     }
 
-    public static  void main(String[] args) throws IOException {
-        Lexer lexer = new Lexer();
+    public static  void main(String[] args) throws IOException 
+    {
+    	Lexer lexer = new Lexer();
+    	Token token = lexer.nextToken();
+    	System.out.println("ERROR: invalid token " + token.tCode + " - " + token.lexeme);
+        /*Lexer lexer = new Lexer();
         while(true)
         {
             Token token = lexer.nextToken();
             System.out.println(" " + token.tCode + " - " + token.lexeme);
-        }
+        }*/
     }
 }
