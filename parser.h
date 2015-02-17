@@ -10,12 +10,12 @@ class Parser
 {
 	public:
 		string parse();
+		
 
 	private:
 		TokenPtr token;
 		LexerPtr lexer;
 };
-
 
 #endif // PARSER_H_INCLUDED
 

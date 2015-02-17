@@ -5,7 +5,6 @@ public class Token
 	                    MULT, LPAREN, RPAREN, PRINT, END, ERROR};
 	TokenCode tCode;
 
-
 	public Token(String lex, TokenCode cod)
         {
             this.lexeme = lex;

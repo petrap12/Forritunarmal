@@ -39,6 +39,13 @@ public class Lexer
 				}
 			}
 
+			//not ready
+			//{ ID,INT,PRINT, END, ERROR};
+			if(buff == "id" || buff == "end" || buff == "print" || isDigit(buff))
+			{
+				oTokens(buff);
+			}
+
 
 		}
 	}
