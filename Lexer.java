@@ -1,9 +1,9 @@
 import java.io.IOException;
+import java.io.*;
 
 public class Lexer
 {
 	//void errorMessage(); we need an exception code
-	Token thisToken;
 	char arrSymbols [];
 
 	 public Lexer()
@@ -34,14 +34,16 @@ public class Lexer
 			{
 				if(letter == arrSymbols[i])
 				{
-					let(letter, arrSymbols[i]);
+					tokens(letter, arrSymbols[i]);
 					inTokenCode = true;
 				}
 			}
+
+
 		}
 	}
 
-    public Token let(char letter, char thisToken)
+    public Token tokens(char letter, char thisToken)
     {
     	if(thisToken == '=')
 		{
@@ -71,6 +73,27 @@ public class Lexer
 		{
 			return new Token (String.valueOf(letter), Token.TokenCode.RPAREN);
 		}
+    }
+
+    Token oTokens(String input)
+    {
+    	if(isDigit(input))
+    	{
+    		return new Token (String.valueOf(input), Token.TokenCode.INT);
+    	}
+    	else 
+    		return new Token (String.valueOf(input), Token.TokenCode.INT); //bara til þess að þetta compile
+    }
+
+    boolean isDigit(String input)
+    {
+    	for(int i=0; i<input.length(); i++)
+    	{
+    		char c = input.charAt(i);
+    		if(!Character.isDigit(c));
+    			return false;
+    	}
+    	return true;
     }
 
     public static  void main(String[] args) throws IOException {
