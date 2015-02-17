@@ -32,6 +32,7 @@ public class Lexer
 		while(true)
 		{
 			letter = (char) System.in.read();
+			buff += letter;
 
 			//If the letter contrains the TokenCode
 			for(int i=0; inTokenCode || i<7; i++)
@@ -43,7 +44,6 @@ public class Lexer
 				}
 			}
 
-			//not ready
 			//{ ID,INT,PRINT, END, ERROR};
 			for(int i=0; inTokenCode || i<3; i++)
 			{
@@ -54,6 +54,14 @@ public class Lexer
 				}
 			}
 
+			if(isDigit(buff))
+			{
+				return new Token (buff, Token.TokenCode.INT);
+			}
+			else if(isAlpha(buff))
+			{
+				return new Token (buff, Token.TokenCode.ID);
+			}
 
 		}
 	}
