@@ -138,7 +138,7 @@ public class Lexer
     	return true;
     }
 
-    public static  void main(String[] args) throws IOException 
+    /*public static  void main(String[] args) throws IOException 
     {
     	Lexer lexer = new Lexer();
     	Token token = lexer.nextToken();
@@ -149,5 +149,5 @@ public class Lexer
             Token token = lexer.nextToken();
             System.out.println(" " + token.tCode + " - " + token.lexeme);
         }*/
-    }
+    //}
 }
