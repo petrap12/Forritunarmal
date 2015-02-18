@@ -5,12 +5,18 @@ public class Parser
 	Token thisToken = null;
 	Lexer thisLexer = null;
 
-	//{
-	// LPAREN, RPAREN,};
+    public Parser (Lexer lex)
+    {
+        this.thisLexer = lex;
+    }
 
-	public void parse() throws IOException
+    public void parse() throws IOException
+    {
+        thisToken = thisLexer.nextToken();
+        statements();
+    }
+	public void statements() throws IOException
 	{
-		thisToken = thisLexer.nextToken();
 		if(thisToken.tCode == Token.TokenCode.ERROR) //ERROR token
 			syntaxError();
 		if(thisToken.tCode == Token.TokenCode.END) //END token
@@ -33,8 +39,8 @@ public class Parser
 			return;
 		}
 		else
-		{
-			syntaxError();
+        {
+		  syntaxError();
 		}
 	}
 	
@@ -61,33 +67,50 @@ public class Parser
     	}
     	if(thisToken.tCode == Token.TokenCode.ASSIGN) //ASSIGN token
     	{
-    		thisToken = thisLexer.nextToken();
-    		parsing();
+    		lineParsing();
     		System.out.println("ASSIGN");
     		return;
     	}
     	if(thisToken.tCode == Token.TokenCode.PLUS) //PLUS token
     	{
-    		thisToken = thisLexer.nextToken();
-    		parsing();
+    		lineParsing();
     		System.out.println("PLUS");
     		return;
     	}
     	if(thisToken.tCode == Token.TokenCode.MINUS) //MINUS token
     	{
-    		thisToken = thisLexer.nextToken();
-    		parsing();
+    		lineParsing();
     		System.out.println("MINUS");
     		return;
     	}
     	if(thisToken.tCode == Token.TokenCode.MULT) //MULT token
     	{
-    		thisToken = thisLexer.nextToken();
-    		parsing();
+    		//Þarf að hafa sér fall sem kallar aftur á parsing ef nextToken er enn tala eftir parsing
+            lineParsing();
     		System.out.println("MULT");
     		return;
     	}
+    	if(thisToken.tCode == Token.TokenCode.LPAREN) //LPAREN token
+    	{
+    		lineParsing();
+    		return;
+    	}
+    	if(thisToken.tCode == Token.TokenCode.RPAREN) //RPAREN token
+    	{
+    		lineParsing();
+    		return;
+    	}
+        syntaxError();
         
+    }
+
+    public void lineParsing() throws IOException
+    {
+         while(thisToken.tCode != Token.TokenCode.SEMICOL)
+        {
+            thisToken = thisLexer.nextToken();
+            parsing();
+        }
     }
 
  	public void syntaxError()

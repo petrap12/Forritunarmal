@@ -3,7 +3,6 @@ import java.io.*;
 
 public class Lexer
 {
-	//void errorMessage(); we need an exception code
 	char arrSymbols [];
 	String arrStrings [];
 
@@ -20,40 +19,33 @@ public class Lexer
 		arrStrings[0] = ("print"); //PRINT
 		arrStrings[1] = ("end"); //END
 		arrStrings[2] = ("error"); //ERROR
-		//{ ID,INT,PRINT, END, ERROR};
 	 }
 
 	 public Token nextToken() throws IOException
 	 {
-	 	boolean inTokenCode=false;
 		String buff = "";
-		char letter;
+		char letter; 
 
 		while(true)
 		{
 			letter = (char) System.in.read();
 			buff += letter;
 
-			//If the letter contrains the TokenCode
-			for(int i=0; inTokenCode || i<7; i++)
+			//If the letter contains the TokenCode
+			for(int i=0; i<7; i++)
 			{
 				if(letter == arrSymbols[i])
-				{
-					tokens(letter, arrSymbols[i]);
-					inTokenCode = true;
-				}
+					tokens(letter, arrSymbols[i]);//returns the token that matches the letter
 			}
 
+			//If this is true the buff must contain a string that matches the other tokens
 			if(letter == ' ' || letter == '\n')
 			{
-				//{ ID,INT,PRINT, END, ERROR};
-				for(int i=0; inTokenCode || i<3; i++)
+				//PRINT, END, ERROR
+				for(int i=0; i<3; i++)
 				{
 					if(buff == arrStrings[i])
-					{
-						otokens(buff);
-						inTokenCode = true;
-					}
+						otokens(buff); //returns the token that matches the buff
 				}
 
 				if(isDigit(buff))
